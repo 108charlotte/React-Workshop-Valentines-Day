@@ -1,0 +1,14 @@
+#card {
+    width: 90%;
+    margin: 2rem;
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+    box-sizing: border-box;
+    background-color: white;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    height: 500px; 
+    text-align: center; 
+    
+}
