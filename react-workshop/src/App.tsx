@@ -25,7 +25,7 @@ function App() {
       {imageSrcs.map((image, i) => (
         <Sticker key={image} imageSrc={image} size = {sizes[i]}/>
       ))}
-     
+    <Sticker text={'xoxo'}/> 
     </>
   )
 }
