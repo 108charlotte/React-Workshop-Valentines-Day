@@ -55,7 +55,8 @@ function Sticker(props: {imageSrc: string, intX?: number, intY?: number, size?: 
                     top: position.y + 'px',
                     cursor: 'grab',
                     zIndex: 2,
-                    width: props.size ? props.size + 'px' : '100px'
+                    width: props.size ? props.size + 'px' : '100px',
+                    color: 'white',
                 }}
             >
                 {props.text}
