@@ -12,10 +12,10 @@ function App() {
     'https://static.vecteezy.com/system/resources/thumbnails/035/149/157/small/ai-generated-cute-kitty-cat-with-christmas-hat-no-background-perfect-for-print-on-demand-merchandise-png.png',
     'https://mystickermania.com/cdn/stickers/158-512x512.png',
     'https://raw.githubusercontent.com/108charlotte/React-Workshop-Valentines-Day/24b18d5303cf47d6caf263820a80cefc3321d97b/react-workshop/src/assets/hearts.png'
-    ]
+  ]
 
   const sizes = [
-    50, 300, 100, 100, 20
+    50, 300, 100, 200, 100, 100
   ]
 
 
