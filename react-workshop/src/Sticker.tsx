@@ -1,9 +1,9 @@
 import {useState, useEffect, useRef} from 'react'
 
-function Sticker(props: {imageSrc: string, intX?: number, intY?: number, size?: number, text?: string}) {
+function Sticker(props: {imageSrc?: string, intX?: number, intY?: number, size?: number, text?: string}) {
 
-    const intX = props.intX ?? Math.random() * (window.innerWidth/2);
-    const intY = props.intY ?? Math.random() * (window.innerHeight/2);
+    const intX = Math.random() * (window.innerWidth/2);
+    const intY = Math.random() * (window.innerHeight/2);
  
     const [position, setPosition] = useState({x: intX, y: intY})
     const [isDragging, setIsDragging] = useState(false)
