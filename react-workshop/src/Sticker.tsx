@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 
 function Sticker(props: {imageSrc?: string, size?: number, text?: string}) {
 
@@ -9,7 +9,7 @@ function Sticker(props: {imageSrc?: string, size?: number, text?: string}) {
     const [isDragging, setIsDragging] = useState(false)
     const offset = useRef({x: 0, y: 0})
 
-    const handleMouseDown = (e) => {
+    const handleMouseDown = (e: React.MouseEvent<HTMLElement>) => {
        //makes the image dragging less buggy
         e.preventDefault() 
 
@@ -21,7 +21,7 @@ function Sticker(props: {imageSrc?: string, size?: number, text?: string}) {
     }
 
     useEffect(() => {
-        const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
             if (isDragging) {
                 setPosition({
                     x: e.clientX - offset.current.x,
