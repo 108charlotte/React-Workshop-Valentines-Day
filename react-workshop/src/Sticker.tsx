@@ -20,6 +20,16 @@ function Sticker(props: {imageSrc?: string, size?: number, text?: string}) {
         setIsDragging(true)
     }
 
+    const handleTouchStart = (e: React.TouchEvent<HTMLElement>) => {
+        e.preventDefault()
+        const t = e.touches[0]
+        offset.current = {
+            x: t.clientX - position.x,
+            y: t.clientY - position.y
+        }
+        setIsDragging(true)
+    }
+
     useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
             if (isDragging) {
@@ -34,13 +44,33 @@ function Sticker(props: {imageSrc?: string, size?: number, text?: string}) {
             setIsDragging(false)
         }
 
+        const handleTouchMove = (e: TouchEvent) => {
+            if (isDragging) {
+                const t = e.touches && e.touches[0]
+                if (t) {
+                    setPosition({
+                        x: t.clientX - offset.current.x,
+                        y: t.clientY - offset.current.y
+                    })
+                }
+            }
+        }
+
+        const handleTouchEnd = () => {
+            setIsDragging(false)
+        }
+
         if (isDragging) {
             window.addEventListener('mousemove', handleMouseMove)
             window.addEventListener('mouseup', handleMouseUp)
+            window.addEventListener('touchmove', handleTouchMove, {passive: false})
+            window.addEventListener('touchend', handleTouchEnd)
             
             return () => {
                 window.removeEventListener('mousemove', handleMouseMove)
                 window.removeEventListener('mouseup', handleMouseUp)
+                window.removeEventListener('touchmove', handleTouchMove as EventListener)
+                window.removeEventListener('touchend', handleTouchEnd)
             }
         }
     }, [isDragging])
@@ -49,6 +79,7 @@ function Sticker(props: {imageSrc?: string, size?: number, text?: string}) {
         props.text ? (
             <h1
                 onMouseDown={handleMouseDown}
+                onTouchStart={handleTouchStart}
                 style={{
                     position: 'absolute',
                     left: position.x + 'px',
@@ -56,6 +87,7 @@ function Sticker(props: {imageSrc?: string, size?: number, text?: string}) {
                     cursor: 'grab',
                     zIndex: 2,
                     color: 'white',
+                    touchAction: 'none'
                 }}
             >
                 {props.text}
@@ -64,13 +96,15 @@ function Sticker(props: {imageSrc?: string, size?: number, text?: string}) {
             <img
                 src={props.imageSrc}
                 onMouseDown={handleMouseDown}
+                onTouchStart={handleTouchStart}
                 style={{
                     position: 'absolute',
                     left: position.x + 'px',
                     top: position.y + 'px',
                     cursor: 'grab',
                     zIndex: 2,
-                    width: props.size ? props.size + 'px' : '100px'
+                    width: props.size ? props.size + 'px' : '100px',
+                    touchAction: 'none'
                 }}
             />
         )
